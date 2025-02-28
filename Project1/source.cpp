@@ -3,6 +3,7 @@
 #include <cmath>
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -22,8 +23,8 @@ int main() {
     int choiseB = 1;
     double bLoos = 0.0;
     double rotChance = 1.5;
-    double maxrobchance = 0;
-    double robchance = 0;
+    double maxrobChance = 0;
+    double robChance = 0;
 
     double m = 5000.0;
     double b = 5.0;
@@ -128,9 +129,9 @@ int main() {
                 cout << "Сэр мне придется выпотрошить вас :(((\n";
                 break;
             }
-    }
+        }
 
-    
+
 
         // Расчет шанса ограбления
         maxrobChance += 100 + dis(gen) * 0.033 - 0.015;
@@ -157,7 +158,7 @@ int main() {
             cout << bLoos << " ВАШИХ БАНАНОВ СГНИЛО!!!\n";
             rotChance /= 2;
         }
-        
+
         // Обновление экономики
         maxBananaCost += 0.013;
         minBananaCost += 0.0131;
@@ -171,6 +172,12 @@ int main() {
         l = round(new_l_dis(gen) * 10) / 10;
 
         day++;
+    }
 
+    ofstream fout("save.save");
+    fout.open("save.save");
+    fout << day <<"\t" << m << "\t" << b << "\t";
+    fout.close();
+    
     return 0;
 }
