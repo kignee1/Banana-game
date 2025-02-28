@@ -22,6 +22,8 @@ int main() {
     int choiseB = 1;
     double bLoos = 0.0;
     double rotChance = 1.5;
+    double maxrobChance = 0;
+    double robChance = 0;
 
     double m = 5000.0;
     double b = 5.0;
