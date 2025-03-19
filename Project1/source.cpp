@@ -35,42 +35,7 @@ int main() {
     uniform_real_distribution<> l_dis(0.0, 1.0);
     double l = round(l_dis(gen) * 10) / 10;  // Округление до 1 знака
 
-    int playercount;
-    cout << "введите количество игроков" << endl;
-    cin >> playercount;
-
-
-    int* m1 = new int[playercount];
-    for (int i = 0; i < playercount; ++i) {
-        m1[i] = m;
-        cout << m1[i] << endl;
-    }
-
-    int* b1 = new int[playercount];
-    for (int i = 0; i < playercount; ++i) {
-        b1[i] = b;
-        cout << b1[i] << endl;
-    }
-
-    //uniform_real_distribution<> l_dis(0.0, 1.0);
-    double* l1 = new double[playercount];
-    for (int i = 0; i < playercount; i++) {
-        l1[i]= round(l_dis(gen) * 10) / 10; // Округление до 1 знака
-        cout << l1[i] << endl;
-    }
-
     double robincrease = 0.5 / (1 + pow(e, -((m / 200) * (bp / 200))));
-
-    double* robChance1 = new double[playercount];
-    for (int i = 0; i < playercount; i++) {
-        robChance1[i] = 0;
-    }
-
-    double* maxrobChance1 = new double[playercount];
-    for (int i = 0; i < playercount; i++) {
-        maxrobChance1[i] = 0;
-    }
-    
 
     while (m > 0) {
         cout << fixed << setprecision(2);
