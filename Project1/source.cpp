@@ -69,7 +69,7 @@ int main() {
     double* bp1 = new double[playercount];
     for (int i = 0; i < playercount; i++) {
         bp1[i] = round(bp_dis(gen) * 100) / 100;
-        cout << bp1[i];
+        cout << bp1[i] << endl;
     }
 
     double robincrease = 0.5 / (1 + pow(e, -((m / 200) * (bp / 200))));
@@ -77,11 +77,13 @@ int main() {
     double* robChance1 = new double[playercount];
     for (int i = 0; i < playercount; i++) {
         robChance1[i] = 0;
+        cout << robChance1[i] << endl;
     }
 
     double* maxrobChance1 = new double[playercount];
     for (int i = 0; i < playercount; i++) {
         maxrobChance1[i] = 0;
+        cout << maxrobChance1[i] << endl;
     }
     
     for (int i = 0; i < playercount; i++) {
