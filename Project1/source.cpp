@@ -7,7 +7,8 @@
 
 using namespace std;
 
-int main() {
+int main() 
+{
     setlocale(LC_ALL, "russian");
 
     random_device rd;
@@ -86,8 +87,10 @@ int main() {
         cout << maxrobChance1[i] << endl;
     }
     
-    for (int i = 0; i < playercount; i++) {
-        while (m > 0) {
+    for (int i = 0; i < playercount; i++) 
+    {
+        while (m > 0) 
+        {
             cout << fixed << setprecision(2);
             cout << "Доброе утро сэр. Сегодня ваш " << dayp[i]
                 << " день в торговле бананами. У вас " << m1[i]
@@ -98,36 +101,42 @@ int main() {
             string choise = 0;
             cin >> choise;
 
-            if (choise == "1") {
+            if (choise == "1") 
+            {
                 cout << "Продавать бананы\n";
                 cout << "Сэр сколько бананов вы хотите продать? ";
                 cin >> choiseB;
 
-                if (choiseB > b) {
+                if (choiseB > b) 
+                {
                     cout << "Сэр мне придется выпотрошить вас :(((\n";
                     break;
                 }
                 m = m - l + bp * choiseB;
                 b -= choiseB;
             }
-            else if (choise == "2") {
+            else if (choise == "2") 
+            {
                 cout << "Покупать бананы\n";
                 cout << "Сэр сколько бананов вы хотите купить? ";
                 cin >> choiseM;
 
-                if (choiseM > m) {
+                if (choiseM > m) 
+                {
                     cout << "Сэр мне придется выпотрошить вас :(((\n";
                     break;
                 }
                 b += choiseM;
                 m = m - l - bp * choiseM;
             }
-            else if (choise == "3") {
+            else if (choise == "3") 
+            {
                 cout << "Ничего не делать\n";
                 cout << "Cэр можете отправиться в джакузи 3 раз за день до следующего дня\n";
                 m -= l;
             }
-            else {
+            else 
+            {
                 cout << "Сэр мне придется выпотрошить вас :(((\n";
                 break;
             }
@@ -145,7 +154,8 @@ int main() {
         cout << "прирост грабежа: " << robincrease << "\n";
 
         uniform_real_distribution<> chance_dis(0.0, 100.0);
-        if (robChance > chance_dis(gen)) {
+        if (robChance > chance_dis(gen)) 
+        {
             double loss = round(((m / 4) + bp + l / 10) * 100) / 100;
             cout << "ВАС ОГРАБИЛИ НА " << loss << " ДЕНЕГ!!!\n";
             m = round((m - loss) * 100) / 100;
@@ -153,7 +163,8 @@ int main() {
         }
 
         // Механика гниения
-        if (rotChance > chance_dis(gen)) {
+        if (rotChance > chance_dis(gen)) 
+        {
             uniform_real_distribution<> rot_dis(2.0, 10.0);
             bLoos = round(b / rot_dis(gen));
             b -= bLoos;
