@@ -28,7 +28,7 @@ int main() {
     double m = 5000.0;
     double b = 5.0;
 
-    // Èíèöèàëèçàöèÿ íà÷àëüíûõ çíà÷åíèé
+    // Инициализация начальных значений
     uniform_real_distribution<> bp_dis(1.0, 4.0);
     double bp = round(bp_dis(gen) * 100) / 100;  // Округление до 2 знаков
 
@@ -39,46 +39,46 @@ int main() {
 
     while (m > 0) {
         cout << fixed << setprecision(2);
-        cout << "Äîáðîå óòðî ñýð. Ñåãîäíÿ âàø " << day
-            << " äåíü â òîðãîâëå áàíàíàìè. Ó âàñ " << m
-            << " äåíåã è " << b << " áàíàíîâ. Öåíû íà áèðæå áàíàíîâ ñåãîäíÿ "
-            << bp << " Öåíà çà àðåíäó ñåãîäíÿ: " << l << ".\n";
+        cout << "Доброе утро сэр. Сегодня ваш " << day
+            << " день в торговле бананами. У вас " << m
+            << " денег и " << b << " бананов. Цены на бирже бананов сегодня "
+            << bp << " Цена за аренду сегодня: " << l << ".\n";
 
-        cout << "Âûáåðèòå ÷òî ìû ñåãîäíÿ áóäåì äåëàòü: Ïðîäàâàòü áàíàíû(1), Ïîêóïàòü áàíàíû(2), Íè÷åãî íå äåëàòü(3): ";
+        cout << "Выберите что мы сегодня будем делать: Продавать бананы(1), Покупать бананы(2), Ничего не делать(3): ";
         string choise;
         cin >> choise;
 
         if (choise == "1") {
-            cout << "Ïðîäàâàòü áàíàíû\n";
-            cout << "Ñýð ñêîëüêî áàíàíîâ âû õîòèòå ïðîäàòü? ";
+            cout << "Продавать бананы\n";
+            cout << "Сэр сколько бананов вы хотите продать? ";
             cin >> choiseB;
 
             if (choiseB > b) {
-                cout << "Ñýð ìíå ïðèäåòñÿ âûïîòðîøèòü âàñ :(((\n";
+                cout << "Сэр мне придется выпотрошить вас :(((\n";
                 break;
             }
             m = m - l + bp * choiseB;
             b -= choiseB;
         }
         else if (choise == "2") {
-            cout << "Ïîêóïàòü áàíàíû\n";
-            cout << "Ñýð ñêîëüêî áàíàíîâ âû õîòèòå êóïèòü? ";
+            cout << "Покупать бананы\n";
+            cout << "Сэр сколько бананов вы хотите купить? ";
             cin >> choiseM;
 
             if (choiseM > m) {
-                cout << "Ñýð ìíå ïðèäåòñÿ âûïîòðîøèòü âàñ :(((\n";
+                cout << "Сэр мне придется выпотрошить вас :(((\n";
                 break;
             }
             b += choiseM;
             m = m - l - bp * choiseM;
         }
         else if (choise == "3") {
-            cout << "Íè÷åãî íå äåëàòü\n";
-            cout << "Cýð ìîæåòå îòïðàâèòüñÿ â äæàêóçè 3 ðàç çà äåíü äî ñëåäóþùåãî äíÿ\n";
+            cout << "Ничего не делать\n";
+            cout << "Cэр можете отправиться в джакузи 3 раз за день до следующего дня\n";
             m -= l;
         }
         else {
-            cout << "Ñýð ìíå ïðèäåòñÿ âûïîòðîøèòü âàñ :(((\n";
+            cout << "Сэр мне придется выпотрошить вас :(((\n";
             break;
         }
 
@@ -87,18 +87,19 @@ int main() {
         minBananaCost += 0.0131;
 
         // Расчет шанса ограбления
+        double robincrease = 0.5 / (1 + pow(e, -((m / 200) * (bp / 200))));
         maxrobChance += dis(gen) * 0.033 - 0.015;
         maxrobChance += robincrease;
         uniform_real_distribution<> rob_dis(0.01, maxrobChance);
         robChance = rob_dis(gen);
 
-        cout << "øàíñ ãðàáåæà: " << robChance << " ìàêñ øàíñ ãðàáåæà: " << maxrobChance << "\n";
-        cout << "ïðèðîñò ãðàáåæà: " << robincrease << "\n";
+        cout << "шанс грабежа: " << robChance << " макс шанс грабежа: " << maxrobChance << "\n";
+        cout << "прирост грабежа: " << robincrease << "\n";
 
         uniform_real_distribution<> chance_dis(0.0, 100.0);
         if (robChance > chance_dis(gen)) {
             double loss = round(((m / 4) + bp + l / 10) * 100) / 100;
-            cout << "ÂÀÑ ÎÃÐÀÁÈËÈ ÍÀ " << loss << " ÄÅÍÅÃ!!!\n";
+            cout << "ВАС ОГРАБИЛИ НА " << loss << " ДЕНЕГ!!!\n";
             m = round((m - loss) * 100) / 100;
             maxrobChance /= 1.8;
         }
@@ -108,7 +109,7 @@ int main() {
             uniform_real_distribution<> rot_dis(2.0, 10.0);
             bLoos = round(b / rot_dis(gen));
             b -= bLoos;
-            cout << bLoos << " ÂÀØÈÕ ÁÀÍÀÍÎÂ ÑÃÍÈËÎ!!!\n";
+            cout << bLoos << " ВАШИХ БАНАНОВ СГНИЛО!!!\n";
             rotChance /= 2;
         }
 
