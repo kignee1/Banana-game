@@ -30,10 +30,10 @@ int main() {
 
     // Èíèöèàëèçàöèÿ íà÷àëüíûõ çíà÷åíèé
     uniform_real_distribution<> bp_dis(1.0, 4.0);
-    double bp = round(bp_dis(gen) * 100) / 100;  // Îêðóãëåíèå äî 2 çíàêîâ
+    double bp = round(bp_dis(gen) * 100) / 100;  // Округление до 2 знаков
 
     uniform_real_distribution<> l_dis(0.0, 1.0);
-    double l = round(l_dis(gen) * 10) / 10;  // Îêðóãëåíèå äî 1 çíàêà
+    double l = round(l_dis(gen) * 10) / 10;  // Округление до 1 знака
 
     double robincrease = 0.5 / (1 + pow(e, -((m / 200) * (bp / 200))));
 
@@ -82,11 +82,11 @@ int main() {
             break;
         }
 
-        // Îáíîâëåíèå ýêîíîìèêè
+        // Обновление экономики
         maxBananaCost += 0.013;
         minBananaCost += 0.0131;
 
-        // Ðàñ÷åò øàíñà îãðàáëåíèÿ
+        // Расчет шанса ограбления
         maxrobChance += dis(gen) * 0.033 - 0.015;
         maxrobChance += robincrease;
         uniform_real_distribution<> rob_dis(0.01, maxrobChance);
@@ -103,7 +103,7 @@ int main() {
             maxrobChance /= 1.8;
         }
 
-        // Ìåõàíèêà ãíèåíèÿ
+        // Механика гниения
         if (rotChance > chance_dis(gen)) {
             uniform_real_distribution<> rot_dis(2.0, 10.0);
             bLoos = round(b / rot_dis(gen));
@@ -112,7 +112,7 @@ int main() {
             rotChance /= 2;
         }
 
-        // Îáíîâëåíèå öåí
+        // Обновление цен
         uniform_real_distribution<> new_bp_dis(minBananaCost + 0.01, maxBananaCost);
         bp = round(new_bp_dis(gen) * 100) / 100;
 
